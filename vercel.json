@@ -1,0 +1,12 @@
+{
+  "experimentalServices": {
+    "frontend": {
+      "root": "frontend",
+      "routePrefix": "/"
+    },
+    "whatsapp": {
+      "root": "services/whatsapp",
+      "routePrefix": "/_/whatsapp"
+    }
+  }
+}
