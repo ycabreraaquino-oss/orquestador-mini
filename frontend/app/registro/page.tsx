@@ -17,7 +17,6 @@ export default function RegistroPage() {
     e.preventDefault();
     setCargando(true);
     setError("");
-    setMensaje("");
 
     const { error } = await supabase.auth.signUp({ email, password });
 
