@@ -122,18 +122,17 @@ export default function Home() {
 
           {/* Botones */}
           <div className="flex flex-col gap-3 w-full">
-            <button
-              type="button"
-              onClick={() => { setPantalla("inicio"); setTimeout(() => inputRef.current?.focus(), 400); }}
-              className="w-full py-3.5 rounded-2xl bg-white text-black text-sm font-semibold tracking-wide hover:bg-white/90 transition-all duration-200"
+            <a
+              href="/login"
+              className="w-full py-3.5 rounded-2xl bg-white text-black text-sm font-semibold tracking-wide hover:bg-white/90 transition-all duration-200 text-center"
             >
               Iniciar sesión
-            </button>
+            </a>
             <a
-              href="/conectar"
+              href="/registro"
               className="w-full py-3.5 rounded-2xl bg-white/5 border border-white/10 text-white/60 text-sm font-medium text-center hover:bg-white/10 hover:text-white/80 transition-all duration-200"
             >
-              Conectar tus apps
+              Crear cuenta gratis
             </a>
           </div>
 
