@@ -1,14 +1,3 @@
 {
-  "experimentalServices": {
-    "frontend": {
-      "root": "frontend",
-      "framework": "nextjs",
-      "routePrefix": "/"
-    },
-    "whatsapp": {
-      "root": "services/whatsapp",
-      "entrypoint": "server.js",
-      "routePrefix": "/_/whatsapp"
-    }
-  }
+  "framework": "nextjs"
 }
