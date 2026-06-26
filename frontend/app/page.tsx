@@ -7,7 +7,7 @@ import AudioModule from "@/components/AudioModule";
 import MessagesModule from "@/components/MessagesModule";
 import GraphPanel from "@/components/GraphPanel";
 
-type Pantalla = "inicio" | "dinamica";
+type Pantalla = "bienvenida" | "inicio" | "dinamica";
 
 interface EstadoSesion {
   intencion: string;
@@ -41,7 +41,7 @@ function extraerArtista(texto: string): string {
 }
 
 export default function Home() {
-  const [pantalla, setPantalla] = useState<Pantalla>("inicio");
+  const [pantalla, setPantalla] = useState<Pantalla>("bienvenida");
   const [grafoPanelVisible, setGrafoPanelVisible] = useState(false);
   const [intencionTexto, setIntencionTexto] = useState("");
   const [sesion, setSesion] = useState<EstadoSesion | null>(null);
@@ -88,15 +88,60 @@ export default function Home() {
   }
 
   function reiniciar() {
-    setPantalla("inicio");
+    setPantalla("bienvenida");
     setSesion(null);
     setIntencionTexto("");
     setGrafoPanelVisible(false);
-    setTimeout(() => inputRef.current?.focus(), 100);
   }
 
   return (
     <main className="relative w-screen h-screen bg-black overflow-hidden select-none">
+
+      {/* ── PANTALLA 0: BIENVENIDA ── */}
+      <div
+        className={`absolute inset-0 flex flex-col items-center justify-center transition-all duration-700 ${
+          pantalla === "bienvenida"
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 -translate-y-full pointer-events-none"
+        }`}
+      >
+        <div className="flex flex-col items-center gap-10 px-8 w-full max-w-xs">
+
+          {/* Logo */}
+          <div className="flex flex-col items-center gap-4">
+            <div className="w-20 h-20 rounded-3xl bg-white/5 border border-white/10 flex items-center justify-center">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.8">
+                <polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/>
+              </svg>
+            </div>
+            <div className="text-center">
+              <h1 className="text-xl font-semibold text-white tracking-tight">Orquestador</h1>
+              <p className="text-[12px] text-white/30 mt-1">Una sola pantalla para todo</p>
+            </div>
+          </div>
+
+          {/* Botones */}
+          <div className="flex flex-col gap-3 w-full">
+            <button
+              type="button"
+              onClick={() => { setPantalla("inicio"); setTimeout(() => inputRef.current?.focus(), 400); }}
+              className="w-full py-3.5 rounded-2xl bg-white text-black text-sm font-semibold tracking-wide hover:bg-white/90 transition-all duration-200"
+            >
+              Iniciar sesión
+            </button>
+            <a
+              href="/conectar"
+              className="w-full py-3.5 rounded-2xl bg-white/5 border border-white/10 text-white/60 text-sm font-medium text-center hover:bg-white/10 hover:text-white/80 transition-all duration-200"
+            >
+              Conectar tus apps
+            </a>
+          </div>
+
+          <p className="text-[10px] text-white/15 text-center">
+            v0.1 · Todo se procesa en tu dispositivo
+          </p>
+        </div>
+      </div>
 
       {/* ── PANTALLA 1: EL LIENZO EN BLANCO ── */}
       <div
