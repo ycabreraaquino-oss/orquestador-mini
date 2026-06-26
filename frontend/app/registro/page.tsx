@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { FaGoogle } from "react-icons/fa";
 
@@ -9,8 +10,8 @@ export default function RegistroPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [cargando, setCargando] = useState(false);
-  const [mensaje, setMensaje] = useState("");
   const [error, setError] = useState("");
+  const router = useRouter();
 
   async function registrar(e: React.FormEvent) {
     e.preventDefault();
@@ -22,10 +23,10 @@ export default function RegistroPage() {
 
     if (error) {
       setError(error.message);
+      setCargando(false);
     } else {
-      setMensaje("Revisa tu correo para confirmar tu cuenta.");
+      router.push(`/verificar?email=${encodeURIComponent(email)}`);
     }
-    setCargando(false);
   }
 
   async function entrarConGoogle() {
@@ -93,7 +94,6 @@ export default function RegistroPage() {
           </div>
 
           {error && <p className="text-xs text-red-400/70 text-center">{error}</p>}
-          {mensaje && <p className="text-xs text-green-400/70 text-center">{mensaje}</p>}
 
           <button
             type="submit"
