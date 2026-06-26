@@ -48,15 +48,14 @@ export default function RegistroPage() {
           <p className="text-[12px] text-white/30">Accede a todas tus apps desde un solo lugar</p>
         </div>
 
-        {/* Google */}
+        {/* Google — próximamente */}
         <button
           type="button"
-          onClick={entrarConGoogle}
-          disabled={cargando}
-          className="w-full py-3.5 rounded-2xl border border-white/15 bg-white/5 hover:bg-white/10 text-white text-sm font-medium flex items-center justify-center gap-3 transition-all"
+          disabled
+          className="w-full py-3.5 rounded-2xl border border-white/8 bg-white/[0.02] text-white/20 text-sm font-medium flex items-center justify-center gap-3 cursor-not-allowed"
         >
-          <FaGoogle size={16} className="text-white/60" />
-          Continuar con Google
+          <FaGoogle size={16} className="text-white/20" />
+          Continuar con Google — próximamente
         </button>
 
         {/* Divisor */}
