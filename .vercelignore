@@ -1,0 +1,7 @@
+services/
+go.mod
+go.sum
+main.go
+conectores/
+intencion/
+*.go
