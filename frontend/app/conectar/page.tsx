@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { FaWhatsapp, FaSpotify, FaInstagram, FaTiktok, FaUber, FaGoogle } from "react-icons/fa";
-import { SiUbereats, SiIndrive } from "react-icons/si";
-import { MdDeliveryDining } from "react-icons/md";
+import { SiUbereats } from "react-icons/si";
+import { MdDeliveryDining, MdDirectionsCar } from "react-icons/md";
 
 interface App {
   id: string;
@@ -145,7 +145,7 @@ export default function ConectarPage() {
       nombre: "InDriver",
       descripcion: "Solicita viajes negociando el precio",
       color: "#2EB85C",
-      icono: <SiIndrive />,
+      icono: <MdDirectionsCar />,
       disponible: false,
     },
     {
