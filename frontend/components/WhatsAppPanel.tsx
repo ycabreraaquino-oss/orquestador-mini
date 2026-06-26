@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 
+const WHATSAPP_URL = process.env.NEXT_PUBLIC_WHATSAPP_URL || "";
+
 interface Resultado {
   nombre: string;
   tipo: string;
@@ -27,9 +29,10 @@ export default function WhatsAppPanel() {
   const [error, setError] = useState("");
 
   useEffect(() => {
+    if (!WHATSAPP_URL) return;
     const verificar = async () => {
       try {
-        const res = await fetch("http://localhost:3001/estado");
+        const res = await fetch(`${WHATSAPP_URL}/estado`);
         const data = await res.json();
         setEstado(data.estado);
         setCodigo(data.codigo ?? null);
@@ -47,7 +50,7 @@ export default function WhatsAppPanel() {
     setRegistrando(true);
     setError("");
     try {
-      const res = await fetch("http://localhost:3001/registrar", {
+      const res = await fetch(`${WHATSAPP_URL}/registrar`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ numero: numero.replace(/\D/g, "") }),
@@ -66,7 +69,7 @@ export default function WhatsAppPanel() {
     setEnviando(true);
     setError("");
     try {
-      const res = await fetch("http://localhost:3001/enviar", {
+      const res = await fetch(`${WHATSAPP_URL}/enviar`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ texto }),
@@ -88,6 +91,23 @@ export default function WhatsAppPanel() {
     } finally {
       setEnviando(false);
     }
+  }
+
+  if (!WHATSAPP_URL) {
+    return (
+      <div className="w-full max-w-md mx-auto card-glass rounded-2xl p-8 flex flex-col items-center gap-4 text-center">
+        <div className="w-12 h-12 rounded-2xl bg-green-500/10 border border-green-500/20 flex items-center justify-center text-2xl">
+          💬
+        </div>
+        <div>
+          <p className="text-sm font-semibold text-white/70">WhatsApp — Próximamente</p>
+          <p className="text-[11px] text-white/30 mt-1 leading-relaxed">
+            El servicio de mensajería estará disponible en la próxima versión.
+            Por ahora prueba las demás funciones.
+          </p>
+        </div>
+      </div>
+    );
   }
 
   return (
